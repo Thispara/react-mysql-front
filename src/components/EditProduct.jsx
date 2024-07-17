@@ -28,7 +28,7 @@ const EditProduct = ({ product, onSave }) => {
 
     try {
       const response = await axios.put(
-        `http://https://node-backend-mysql-ff131785e8ac.herokuapp.com/api/products/${product.prod_id}`,
+        `https://node-backend-mysql-ff131785e8ac.herokuapp.com/api/products/${product.prod_id}`,
         formData,
         {
           headers: {
