@@ -11,9 +11,8 @@ const Header = ({ toggleMenu, cartItems, setSearchTerm }) => {
     setSearchTerm(searchInput);
   };
 
-  // Calculate total number of unique items in the cart
   const cartItemCount = cartItems.reduce((count, item) => {
-    return count + item.prod_quan; // Sum up quantities of each item
+    return count + item.prod_quan; 
   }, 0);
 
   return (

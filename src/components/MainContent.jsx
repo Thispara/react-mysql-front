@@ -16,7 +16,7 @@ const MainContent = ({ addToCart, searchTerm }) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('https://node-backend-mysql-ff131785e8ac.herokuapp.com/api/products');
+      const response = await axios.get('${apiUrl}/api/products');
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -36,7 +36,7 @@ const MainContent = ({ addToCart, searchTerm }) => {
 
   const handleSave = async (updatedProduct) => {
     try {
-      const response = await axios.put(`https://node-backend-mysql-ff131785e8ac.herokuapp.com/api/products/${updatedProduct.prod_id}`, updatedProduct);
+      const response = await axios.put(`${apiUrl}/api/products/${updatedProduct.prod_id}`, updatedProduct);
       setProducts(products.map((prod) => (prod.prod_id === updatedProduct.prod_id ? response.data : prod)));
       setEditingProduct(null);
     } catch (error) {
@@ -46,7 +46,7 @@ const MainContent = ({ addToCart, searchTerm }) => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://node-backend-mysql-ff131785e8ac.herokuapp.com/api/products/${productToDelete.prod_id}`);
+      await axios.delete(`${apiUrl}/api/products/${productToDelete.prod_id}`);
       setProducts(products.filter(prod => prod.prod_id !== productToDelete.prod_id));
       setProductToDelete(null);
       setShowDeleteConfirmation(false);

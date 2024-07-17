@@ -1,8 +1,6 @@
-// FloatingActionButton.jsx
-
 import React, { useState } from 'react';
-import AddProductForm from './AddProductForm'; // Adjust the import path as per your project structure
-import './FloatingButton.css'; // Import CSS for styling
+import AddProductForm from './AddProductForm'; 
+import './FloatingButton.css'; 
 import { FaPlusCircle } from "react-icons/fa";
 
 const FloatingButton = () => {

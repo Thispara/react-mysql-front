@@ -5,7 +5,7 @@ import './Checkout.css';
 
 const Checkout = ({ cartItems, setCartItems }) => {
   const navigate = useNavigate();
-  const [showPopup, setShowPopup] = useState(false); // State to manage popup visibility
+  const [showPopup, setShowPopup] = useState(false); 
 
   // Calculate total amount based on cart items
   const totalAmount = cartItems.reduce((total, item) => total + (item.prod_price * item.prod_quan), 0);
@@ -18,12 +18,11 @@ const Checkout = ({ cartItems, setCartItems }) => {
         prod_quan: item.prod_quan,
       }));
 
-      // Example of a POST request to the backend API
-      await axios.post('https://node-backend-mysql-ff131785e8ac.herokuapp.com/api/checkout', { products: productsWithQuantities });
+      await axios.post('${apiUrl}/api/checkout', { products: productsWithQuantities });
 
       // Clear the cart after successful checkout
       setCartItems([]);
-      setShowPopup(true); // Show the popup after successful checkout
+      setShowPopup(true); 
     } catch (error) {
       console.error('Error during checkout:', error);
       alert('Failed to complete checkout');
@@ -31,8 +30,8 @@ const Checkout = ({ cartItems, setCartItems }) => {
   };
 
   const closePopup = () => {
-    setShowPopup(false); // Function to close the popup
-    navigate('/'); // Navigate to the home page after closing the popup
+    setShowPopup(false); 
+    navigate('/'); 
   };
 
   return (

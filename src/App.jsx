@@ -20,7 +20,6 @@ const App = () => {
       );
       setCartItems(updatedCart);
     } else {
-      // Otherwise, add it to cart with quantity 1
       setCartItems([...cartItems, { ...product, prod_quan: 1 }]);
     }
   };

@@ -8,7 +8,7 @@ const EditProduct = ({ product, onSave }) => {
   const [prodQuan, setProdQuan] = useState(product.prod_quan);
   const [prodCode, setProdCode] = useState(product.prod_code);
   const [prodImg, setProdImg] = useState(null); // State to hold the new image file
-  const [initialProdImg, setInitialProdImg] = useState(product.prod_img); // Initial image URL or filename
+  const [initialProdImg, setInitialProdImg] = useState(product.prod_img); 
   const navigate = useNavigate();
 
   const handleSave = async () => {
@@ -19,7 +19,7 @@ const EditProduct = ({ product, onSave }) => {
     formData.append('prod_quan', prodQuan);
     formData.append('prod_code', prodCode);
 
-    // Append the image only if a new image is selected, otherwise use the initial image
+    
     if (prodImg) {
       formData.append('prod_img', prodImg);
     } else {
@@ -28,7 +28,7 @@ const EditProduct = ({ product, onSave }) => {
 
     try {
       const response = await axios.put(
-        `https://node-backend-mysql-ff131785e8ac.herokuapp.com/api/products/${product.prod_id}`,
+        `${apiUrl}/api/products/${product.prod_id}`,
         formData,
         {
           headers: {
