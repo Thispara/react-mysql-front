@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './FloatingButton.css';
+
 const AddProductForm = () => {
   const [formData, setFormData] = useState({
     prod_name: '',
     prod_price: '',
     prod_quan: '',
-    prod_img: null,
+    prod_img: '', // Initialize as empty string for base64 data
   });
 
   const handleInputChange = (e) => {
@@ -14,7 +15,17 @@ const AddProductForm = () => {
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, prod_img: e.target.files[0] });
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      // Set prod_img to base64 string when file reading is complete
+      setFormData({ ...formData, prod_img: reader.result });
+    };
+
+    if (file) {
+      reader.readAsDataURL(file); // Convert file to base64
+    }
   };
 
   const generateProductCode = () => {
@@ -29,17 +40,12 @@ const AddProductForm = () => {
     try {
       const generatedCode = generateProductCode();
 
-      const formDataUpload = new FormData();
-      formDataUpload.append('prod_name', formData.prod_name);
-      formDataUpload.append('prod_price', formData.prod_price);
-      formDataUpload.append('prod_quan', formData.prod_quan);
-      formDataUpload.append('prod_code', generatedCode);
-      formDataUpload.append('prod_img', formData.prod_img);
-
-      const response = await axios.post('https://mysql-api-766e0b27643c.herokuapp.com/api/upload', formDataUpload, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+      const response = await axios.post('https://mysql-api-766e0b27643c.herokuapp.com/api/upload', {
+        prod_name: formData.prod_name,
+        prod_price: formData.prod_price,
+        prod_quan: formData.prod_quan,
+        prod_code: generatedCode,
+        prod_img: formData.prod_img,
       });
 
       console.log('Product added successfully:', response.data);
@@ -49,7 +55,7 @@ const AddProductForm = () => {
         prod_name: '',
         prod_price: '',
         prod_quan: '',
-        prod_img: null,
+        prod_img: '',
       });
     } catch (error) {
       console.error('Error adding product:', error);
@@ -104,6 +110,7 @@ const AddProductForm = () => {
             required
           />
         </div>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
