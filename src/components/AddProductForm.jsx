@@ -36,7 +36,7 @@ const AddProductForm = () => {
       formDataUpload.append('prod_code', generatedCode);
       formDataUpload.append('prod_img', formData.prod_img);
 
-      const response = await axios.post('${apiUrl}/api/upload', formDataUpload, {
+      const response = await axios.post('https://node-backend-mysql-ff131785e8ac.herokuapp.com/api/upload', formDataUpload, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
