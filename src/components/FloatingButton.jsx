@@ -22,7 +22,6 @@ const FloatingButton = () => {
         <div className="popup">
           <div className="popup-content">
             <AddProductForm />
-            <button className="add-product-button" type="submit">Add Product</button>
             <button className="close-button" onClick={toggleForm}>
               <TiDelete className="close-icon" size={32}/>
             </button>

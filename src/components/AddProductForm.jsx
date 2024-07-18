@@ -110,7 +110,7 @@ const AddProductForm = () => {
             required
           />
         </div>
-        <button type="submit">Submit</button>
+        <button className="add-product-button" type="submit">Add Product</button>
       </form>
     </div>
   );
