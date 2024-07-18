@@ -16,7 +16,7 @@ const EditProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`https://mysql-api-cdae84d5b54e.herokuapp.com/api/products/${id}`);
+        const response = await axios.get(`https://mysql-api-766e0b27643c.herokuapp.com/api/products/${id}`);
         const fetchedProduct = response.data;
         setProduct(fetchedProduct);
         setProdName(fetchedProduct.prod_name);
@@ -51,7 +51,7 @@ const EditProduct = () => {
 
     try {
       const response = await axios.put(
-        `https://node-backend-mysql-ff131785e8ac.herokuapp.com/api/products/${id}`,
+        `https://mysql-api-766e0b27643c.herokuapp.com/api/products/${id}`,
         formData,
         {
           headers: {
