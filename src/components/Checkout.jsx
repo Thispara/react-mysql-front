@@ -18,7 +18,7 @@ const Checkout = ({ cartItems, setCartItems }) => {
         prod_quan: item.prod_quan,
       }));
 
-      await axios.post('https://node-backend-mysql-ff131785e8ac.herokuapp.com/api/checkout', { products: productsWithQuantities });
+      await axios.post('https://mysql-api-cdae84d5b54e.herokuapp.com/api/checkout', { products: productsWithQuantities });
 
       // Clear the cart after successful checkout
       setCartItems([]);

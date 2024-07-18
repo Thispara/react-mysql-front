@@ -260,7 +260,18 @@ body {
     display: none;
   }
 
-  .search-bar button .search-text {
-    display: none;
+  
+}
+@media screen and (max-width: 420px) {
+  .main-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
   }
+
+  .product-card img {
+    height: 100px;
+  }
+
 }

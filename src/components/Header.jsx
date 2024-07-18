@@ -8,7 +8,7 @@ const Header = ({ toggleMenu, cartItems, setSearchTerm }) => {
   const [searchInput, setSearchInput] = useState('');
 
   const handleSearch = () => {
-    setSearchTerm(searchInput);
+    setSearchTerm(searchInput.trim());
   };
 
   const cartItemCount = cartItems.reduce((count, item) => {
@@ -27,7 +27,10 @@ const Header = ({ toggleMenu, cartItems, setSearchTerm }) => {
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />
-        <button className="search-button" onClick={handleSearch}>
+        <button 
+          className="search-button" 
+          onClick={handleSearch} 
+          aria-label='Search'>
           <FaSearch />
           <span className="search-text">Search</span>
         </button>

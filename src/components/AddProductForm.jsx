@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import './FloatingButton.css';
 const AddProductForm = () => {
   const [formData, setFormData] = useState({
     prod_name: '',
@@ -36,7 +36,7 @@ const AddProductForm = () => {
       formDataUpload.append('prod_code', generatedCode);
       formDataUpload.append('prod_img', formData.prod_img);
 
-      const response = await axios.post('https://node-backend-mysql-ff131785e8ac.herokuapp.com/api/upload', formDataUpload, {
+      const response = await axios.post('https://mysql-api-cdae84d5b54e.herokuapp.com/api/upload', formDataUpload, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -44,6 +44,7 @@ const AddProductForm = () => {
 
       console.log('Product added successfully:', response.data);
 
+      // Reset form fields after successful submission
       setFormData({
         prod_name: '',
         prod_price: '',
@@ -56,10 +57,10 @@ const AddProductForm = () => {
   };
 
   return (
-    <div>
+    <div className="add-product-container">
       <h2>Add New Product</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label htmlFor="prod_name">Product Name:</label>
           <input
             type="text"
@@ -70,7 +71,7 @@ const AddProductForm = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="prod_price">Price:</label>
           <input
             type="number"
@@ -81,7 +82,7 @@ const AddProductForm = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="prod_quan">Quantity:</label>
           <input
             type="number"
@@ -92,7 +93,7 @@ const AddProductForm = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="prod_img">Image:</label>
           <input
             type="file"
@@ -103,7 +104,6 @@ const AddProductForm = () => {
             required
           />
         </div>
-        <button className="add-product-button" type="submit">Add Product</button>
       </form>
     </div>
   );
